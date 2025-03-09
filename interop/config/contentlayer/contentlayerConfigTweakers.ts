@@ -24,10 +24,10 @@ import {
   buildPagePath,
   buildPageUrl
 } from '../../lib/builders';
+import { authorsNames } from '../../linkers/contentlayer/blog/authors';
 import { indexedBlogAuthorsNames } from './blog/authorsMetadatas';
 import { indexedBlogTagOptions } from './blog/blogTagsMetadatas';
 import DocumentHeading from './nested-types/DocumentHeading';
-import { authorsNames } from './blog/authorsLinker';
 import { blogTagOptions } from './blog/blogTags';
 import SEO from './nested-types/SEO';
 

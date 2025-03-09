@@ -3,8 +3,8 @@
 
 import type { CreateAuthorsNames } from '@rtm/shared-types/Blog';
 
-import { createAuthorsNamesAndAuthorsEntries } from './builders/authors';
-import { authors } from './authors';
+import { createAuthorsNamesAndAuthorsEntries } from '../../../config/contentlayer/blog/builders/authors';
+import { authors } from '../../../config/contentlayer/blog/authors';
 
 export const [authorsNames, authorsEntries] = createAuthorsNamesAndAuthorsEntries(authors);
 

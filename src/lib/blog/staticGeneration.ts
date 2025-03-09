@@ -13,12 +13,12 @@ import type { MaybeObjectValue, MaybeUndefined, MaybeNull, Couple } from '@rtm/s
 import type { AlternateURLs } from 'next/dist/lib/metadata/types/alternative-urls-types';
 import type { I18nMiddlewareConfig, LanguageFlag } from '@rtm/shared-types/I18n';
 import type { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types';
-import type { AuthorName } from '##/config/contentlayer/blog/authorsLinker';
+import type { AuthorName } from '##/linkers/contentlayer/blog/authors';
 import type { Href } from '@rtm/shared-types/Next';
 import type { Metadata } from 'next';
 
-import { authorsEntries } from '##/config/contentlayer/blog/authorsLinker';
 import buildPageTitle from '@rtm/shared-lib/portable/str/buildPageTitle';
+import { authorsEntries } from '##/linkers/contentlayer/blog/authors';
 import { DEFAULT_LANGUAGE, LANGUAGES, i18ns } from '##/config/i18n';
 import BlogTaxonomy from '##/config/taxonomies/blog';
 import I18nTaxonomy from '##/config/taxonomies/i18n';
