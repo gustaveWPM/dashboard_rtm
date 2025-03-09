@@ -3,23 +3,23 @@ import type { PagePath, PageRoot } from '@/types/Page';
 
 import { INDEX_TOKEN } from '##/lib/misc/contentlayerCornerCases';
 
-export type PagesConfigType<TestingRoot extends PageRoot, __Document extends object> = {
+export type PagesConfigType<TestingRoot extends PageRoot, Document extends object> = {
   SKIP_AUTOMOUNT: { prefixes: readonly string[]; paths: readonly PagePath[] };
-  allPages: () => readonly __Document[];
+  allPages: () => readonly Document[];
   ENABLE_DRAFTS_IN_PROD: boolean;
   TESTING_ROOT: TestingRoot;
 };
 
-type Options<TestingRoot extends PageRoot, __Document extends object> = WithOptionalProps<
-  PagesConfigType<TestingRoot, __Document>,
+type Options<TestingRoot extends PageRoot, Document extends object> = WithOptionalProps<
+  PagesConfigType<TestingRoot, Document>,
   'ENABLE_DRAFTS_IN_PROD' | 'SKIP_AUTOMOUNT'
 > &
-  Rewire<PagesConfigType<TestingRoot, __Document>, 'TESTING_ROOT', TestingRoot>;
+  Rewire<PagesConfigType<TestingRoot, Document>, 'TESTING_ROOT', TestingRoot>;
 
 const forceToIncludeIndexTokenInSkipAutomountPathsAndCastDraftsInProdEnabler = <
   TestingRoot extends PageRoot,
-  __Document extends object,
-  __Options extends Options<TestingRoot, __Document> = Options<TestingRoot, __Document>
+  Document extends object,
+  __Options extends Options<TestingRoot, Document> = Options<TestingRoot, Document>
 >(
   options: __Options
 ) =>
@@ -34,6 +34,6 @@ const forceToIncludeIndexTokenInSkipAutomountPathsAndCastDraftsInProdEnabler = <
     ENABLE_DRAFTS_IN_PROD: Boolean(options.ENABLE_DRAFTS_IN_PROD)
   }) as const;
 
-export const createPagesConfig = <TestingRoot extends PageRoot, __Document extends object>(
-  options: Options<TestingRoot, __Document>
-): PagesConfigType<TestingRoot, __Document> => forceToIncludeIndexTokenInSkipAutomountPathsAndCastDraftsInProdEnabler(options);
+export const createPagesConfig = <TestingRoot extends PageRoot, Document extends object>(
+  options: Options<TestingRoot, Document>
+): PagesConfigType<TestingRoot, Document> => forceToIncludeIndexTokenInSkipAutomountPathsAndCastDraftsInProdEnabler(options);
