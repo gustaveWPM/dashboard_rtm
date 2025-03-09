@@ -1,18 +1,17 @@
 import type { WithOptionalProps, Rewire } from '@rtm/shared-types/CustomUtilityTypes';
 import type { PagePath, PageRoot } from '@/types/Page';
-import type { Document } from 'contentlayer/core';
 
 import { INDEX_TOKEN } from '##/lib/misc/contentlayerCornerCases';
 import { pipeable } from '@rtm/shared-lib/misc';
 
-export type PagesConfigType<TestingRoot extends PageRoot, __Document extends Document> = {
+export type PagesConfigType<TestingRoot extends PageRoot, __Document extends object> = {
   SKIP_AUTOMOUNT: { prefixes: readonly string[]; paths: readonly PagePath[] };
   allPages: () => readonly __Document[];
   ENABLE_DRAFTS_IN_PROD: boolean;
   TESTING_ROOT: TestingRoot;
 };
 
-type Options<TestingRoot extends PageRoot, __Document extends Document> = WithOptionalProps<
+type Options<TestingRoot extends PageRoot, __Document extends object> = WithOptionalProps<
   PagesConfigType<TestingRoot, __Document>,
   'ENABLE_DRAFTS_IN_PROD' | 'SKIP_AUTOMOUNT'
 > &
@@ -20,7 +19,7 @@ type Options<TestingRoot extends PageRoot, __Document extends Document> = WithOp
 
 const prepareSkipAutomountSection = <
   TestingRoot extends PageRoot,
-  __Document extends Document,
+  __Document extends object,
   __Options extends Options<TestingRoot, __Document> = Options<TestingRoot, __Document>
 >() =>
   pipeable((options: __Options) =>
@@ -38,7 +37,7 @@ const prepareSkipAutomountSection = <
 
 const forceToIncludeIndexTokenInSkipAutomountPathsAndCastDraftsInProdEnabler = <
   TestingRoot extends PageRoot,
-  __Document extends Document,
+  __Document extends object,
   __Options extends Options<TestingRoot, __Document> = Options<TestingRoot, __Document>
 >() =>
   pipeable(
@@ -55,7 +54,7 @@ const forceToIncludeIndexTokenInSkipAutomountPathsAndCastDraftsInProdEnabler = <
       }) as const
   );
 
-export const createPagesConfig = <TestingRoot extends PageRoot, __Document extends Document>(
+export const createPagesConfig = <TestingRoot extends PageRoot, __Document extends object>(
   options: Options<TestingRoot, __Document>
 ): PagesConfigType<TestingRoot, __Document> =>
   prepareSkipAutomountSection<TestingRoot, __Document>().then(
