@@ -16,7 +16,7 @@ function getSlug(filename: string): LpSlug | null {
  * @throws {BuilderError}
  */
 async function buildLpMetadatasFromLpFolder(lpFolder: string): Promise<LpMetadatas> {
-  const metadatas = {} as LpMetadatas;
+  const metadatas: LpMetadatas = {};
 
   const maybeCategories = await fs.readdir(lpFolder, { withFileTypes: true });
   for (const maybeCategory of maybeCategories) {

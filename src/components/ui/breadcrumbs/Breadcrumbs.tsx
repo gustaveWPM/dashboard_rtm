@@ -61,7 +61,7 @@ const Breadcrumbs: FunctionComponent<BreadcrumbsProps> = async ({ customCrumbs, 
   const customCrumbsDepths = customCrumbs?.map(({ depth }) => depth) ?? [];
 
   const pathParts = getPathParts(pathname);
-  const pagesTitlesParts = pathParts.reduce((acc, part, currentIndex) => {
+  const pagesTitlesParts = pathParts.reduce<string[]>((acc, part, currentIndex) => {
     // eslint-disable-next-line no-magic-numbers
     if (customCrumbsDepths.includes(currentIndex + 1)) {
       acc.push('');
@@ -73,7 +73,7 @@ const Breadcrumbs: FunctionComponent<BreadcrumbsProps> = async ({ customCrumbs, 
 
     acc.push(globalT(`${i18ns.pagesTitles}.${part}` as I18nVocabTarget));
     return acc;
-  }, [] as string[]);
+  }, []);
 
   return (
     <nav aria-label={capitalize(globalT(`${i18ns.vocab}.breadcrumbs`))} data-pagefind-ignore="all" className={className}>

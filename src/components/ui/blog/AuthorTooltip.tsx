@@ -1,6 +1,6 @@
 'use client';
 
-import type { MediaKey, Author } from '##/config/contentlayer/blog/authors';
+import type { MediaKey, Author } from '##/config/contentlayer/blog/types/authors';
 import type { FunctionComponent, ReactNode } from 'react';
 import type { Href } from '@rtm/shared-types/Next';
 

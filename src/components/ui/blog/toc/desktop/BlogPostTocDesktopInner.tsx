@@ -69,13 +69,10 @@ const BlogPostTocDesktopInner: FunctionComponent<BlogPostTocDesktopInnerProps> =
   const handleScrollDownRef = useRef<MaybeNull<(currentScrollY: PxValue, oldScrollY: PxValue, forced?: boolean) => void>>(null);
 
   const slugAndIndexAssoc = useMemo(() => {
-    return headings.reduce(
-      (indexed, { slug }, idx) => {
-        indexed[slug] = idx;
-        return indexed;
-      },
-      {} as Record<HeadingSlug, HeadingSlugIdx>
-    );
+    return headings.reduce<Record<HeadingSlug, HeadingSlugIdx>>((indexed, { slug }, idx) => {
+      indexed[slug] = idx;
+      return indexed;
+    }, {});
   }, [headings]);
 
   const headingsFromDOM = useMemo(

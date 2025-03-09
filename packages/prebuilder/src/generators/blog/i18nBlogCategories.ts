@@ -29,7 +29,7 @@ function generateSchema(
   __PREFIXED_I18N_CATEGORIES_REQUIRED_EXTRA_FIELDS: string[],
   __I18N_SUBCATEGORIES_REQUIRED_EXTRA_FIELDS: string[]
 ) {
-  const schema = {} as BlogCategoriesSchema;
+  const schema: BlogCategoriesSchema = {};
 
   for (const category in blogArchitecture) {
     const subcategories = blogArchitecture[category];
@@ -45,10 +45,12 @@ function generateSchema(
         schema[category][subcategory] = emptyString;
         continue;
       }
-      const obj = {} as BlogCategoriesSchemaSubcategoryEntity;
+
+      const obj: BlogCategoriesSchemaSubcategoryEntity = {};
       for (const extraField of __I18N_SUBCATEGORIES_REQUIRED_EXTRA_FIELDS) {
         obj[extraField] = emptyString;
       }
+
       schema[category][subcategory] = obj;
     }
   }

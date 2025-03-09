@@ -2,13 +2,13 @@ import type { EmptyString } from '@rtm/shared-types/CustomUtilityTypes';
 
 import { describe, expect, it } from 'vitest';
 
-import { generateBlogTagOptionsVocabSchema, generateIndexedBlogTagOptions } from '../blogTagsGenerators';
+import { createBlogTagOptionsVocabSchema, createIndexedBlogTagOptions } from '../blogTagsGenerators';
 
 const emptyString: EmptyString = '';
 const FAKE_BLOG_TAGS_OPTIONS = ['tag_one', 'tag_two', 'tag_three'] as const satisfies string[];
 
 describe('generateBlogTagOptionsVocabSchema', () => {
-  const blogTagOptionsVocabSchema = generateBlogTagOptionsVocabSchema(FAKE_BLOG_TAGS_OPTIONS);
+  const blogTagOptionsVocabSchema = createBlogTagOptionsVocabSchema(FAKE_BLOG_TAGS_OPTIONS);
 
   it('should return a valid vocab schema, given blog tags options', () => {
     expect(blogTagOptionsVocabSchema).toStrictEqual({
@@ -19,13 +19,13 @@ describe('generateBlogTagOptionsVocabSchema', () => {
   });
 
   it('should return an empty dictionnary, given empty blog tags options', () => {
-    expect(generateBlogTagOptionsVocabSchema([])).toStrictEqual({});
+    expect(createBlogTagOptionsVocabSchema([])).toStrictEqual({});
   });
 });
 
 describe('generateIndexedBlogTagOptions', () => {
   it('should return a valid indexes dictionnary, given blog tags options', () => {
-    const indexedBlogTagOptions = generateIndexedBlogTagOptions(FAKE_BLOG_TAGS_OPTIONS);
+    const indexedBlogTagOptions = createIndexedBlogTagOptions(FAKE_BLOG_TAGS_OPTIONS);
 
     expect(indexedBlogTagOptions).toStrictEqual({
       tag_three: 2,
@@ -35,6 +35,6 @@ describe('generateIndexedBlogTagOptions', () => {
   });
 
   it('should return an empty dictionnary, given empty blog tags options', () => {
-    expect(generateIndexedBlogTagOptions([])).toStrictEqual({});
+    expect(createIndexedBlogTagOptions([])).toStrictEqual({});
   });
 });

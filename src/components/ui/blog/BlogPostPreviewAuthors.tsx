@@ -1,13 +1,14 @@
 'use client';
 
 import type { AuthorTooltipLazyProps } from '@/components/ui/blog/AuthorTooltipLazy';
-import type { AuthorName, Author } from '##/config/contentlayer/blog/authors';
+import type { Author } from '##/config/contentlayer/blog/types/authors';
+import type { AuthorName } from '##/linkers/contentlayer/blog/authors';
 import type { MaybeNull } from '@rtm/shared-types/CustomUtilityTypes';
 import type { WithClassname, Href } from '@rtm/shared-types/Next';
 import type { Index } from '@rtm/shared-types/Numbers';
 import type { FunctionComponent } from 'react';
 
-import { authorsEntries } from '##/config/contentlayer/blog/authors';
+import { authorsEntries } from '##/linkers/contentlayer/blog/authors';
 import { AUTHOR_TOOLTIP_SIZE } from '@/config/Blog/etc';
 import { getClientSideI18n } from '@/i18n/client';
 import { useEffect, useState } from 'react';

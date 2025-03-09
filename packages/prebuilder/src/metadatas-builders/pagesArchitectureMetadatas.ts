@@ -25,7 +25,7 @@ function getEntityPath(directoriesChain: PathSegment[], filenameWithoutExt: File
 }
 
 export default function getPagesArchitectureMetadatas(arborescence: Arborescence): PagesMetadatas {
-  const metadatas = {} as PagesMetadatas;
+  const metadatas: PagesMetadatas = {};
 
   for (const { directoriesChain, filename } of arborescence) {
     const ext = path.extname(filename);

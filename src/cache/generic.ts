@@ -4,7 +4,7 @@ import type { MsTimestamp, MsValue } from '@rtm/shared-types/Numbers';
 // * ... Inspired from https://github.com/Julien-R44/bentocache
 
 namespace GenericInMemoryCache {
-  export const data = {} as DataCache;
+  export const data: DataCache = {};
 }
 
 export const keysFactory = {

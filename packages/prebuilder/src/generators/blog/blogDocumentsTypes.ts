@@ -17,23 +17,20 @@ type PostIdentifier = string;
 type DocumentTypeEntity = { categoryFolder: string };
 
 const generateSchema = (blogArchitecture: CategoriesMetadatas) =>
-  Object.keys(blogArchitecture).reduce(
-    (documentTypes, categoryFolder) => {
-      const postSuffix = 'post';
-      const categoryWithoutDashes = categoryFolder.split('-').map(capitalize).join('');
+  Object.keys(blogArchitecture).reduce<Record<PostIdentifier, DocumentTypeEntity>>((documentTypes, categoryFolder) => {
+    const postSuffix = 'post';
+    const categoryWithoutDashes = categoryFolder.split('-').map(capitalize).join('');
 
-      const sanitizedCategory = categoryWithoutDashes.toLowerCase().endsWith(postSuffix)
-        ? // eslint-disable-next-line no-magic-numbers
-          categoryWithoutDashes.slice(0, -postSuffix.length)
-        : categoryWithoutDashes;
+    const sanitizedCategory = categoryWithoutDashes.toLowerCase().endsWith(postSuffix)
+      ? // eslint-disable-next-line no-magic-numbers
+        categoryWithoutDashes.slice(0, -postSuffix.length)
+      : categoryWithoutDashes;
 
-      const postsIdentifier = sanitizedCategory + capitalize(postSuffix);
+    const postsIdentifier = sanitizedCategory + capitalize(postSuffix);
 
-      documentTypes[postsIdentifier] = { categoryFolder };
-      return documentTypes;
-    },
-    {} as Record<PostIdentifier, DocumentTypeEntity>
-  );
+    documentTypes[postsIdentifier] = { categoryFolder };
+    return documentTypes;
+  }, {});
 
 export default async function generateBlogDocumentTypes(
   blogArchitecture: CategoriesMetadatas,

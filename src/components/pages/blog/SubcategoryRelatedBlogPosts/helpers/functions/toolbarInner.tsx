@@ -1,6 +1,6 @@
 import type { MaybeNull } from '@rtm/shared-types/CustomUtilityTypes';
 import type { Quantity, Count, Id } from '@rtm/shared-types/Numbers';
-import type { BlogTag } from '##/config/contentlayer/blog/blogTags';
+import type { BlogTag } from '##/config/contentlayer/blog/tags';
 import type { MutableRefObject, ReactElement } from 'react';
 import type { FiltersAssoc } from '@/config/Blog/client';
 import type { AppPath } from '@rtm/shared-types/Next';

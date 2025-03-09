@@ -50,7 +50,7 @@ const BENCHMARK_ACCURACY = 5;
 
 const HANDLED_ERRORS_TYPES = [FeedbackError, BuilderError, ArgumentsValidatorError, ArgError];
 
-let clocks = {} as Partial<{
+let clocks: Partial<{
   pagesTaxonomyCheckersStartTime: MsTimestamp;
   blogTaxonomyCheckersStartTime: MsTimestamp;
   pagesTaxonomyCheckersEndTime: MsTimestamp;
@@ -68,7 +68,7 @@ let clocks = {} as Partial<{
   lpCodegenStartTime: MsTimestamp;
   lpCodegenEndTime: MsTimestamp;
   globalStartTime: MsTimestamp;
-}>;
+}> = {};
 
 function resetBenchmarkClocks(): void {
   clocks = {};

@@ -1,6 +1,6 @@
 import type { MaybeNull } from '@rtm/shared-types/CustomUtilityTypes';
-import type { BlogTag } from '##/config/contentlayer/blog/blogTags';
 import type { FunctionComponent, MutableRefObject } from 'react';
+import type { BlogTag } from '##/config/contentlayer/blog/tags';
 import type { Id } from '@rtm/shared-types/Numbers';
 import type { BlogTagId } from '@/types/Blog';
 
