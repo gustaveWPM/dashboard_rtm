@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest';
 
-import pipe from '../pipeable';
+import pipeable from '../pipeable';
 
 describe('sortNumbers', () => {
-  it('should pipe correctly', () => {
+  it('should compose correctly', () => {
     // eslint-disable-next-line no-magic-numbers
-    const incr = pipe((x: number) => x + 1);
+    const incr = pipeable((x: number) => x + 1);
 
     // eslint-disable-next-line no-magic-numbers
-    const double = pipe((x: number) => x * 2);
+    const double = pipeable((x: number) => x * 2);
 
     const a = incr;
     const b = incr.then(double);
