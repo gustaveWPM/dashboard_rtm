@@ -24,14 +24,14 @@ const forceToIncludeIndexTokenInSkipAutomountPathsAndCastDraftsInProdEnabler = <
   options: __Options
 ) =>
   ({
+    ...options,
+
     SKIP_AUTOMOUNT: {
       paths: [...(options.SKIP_AUTOMOUNT?.paths ?? []), INDEX_TOKEN as any],
       prefixes: options.SKIP_AUTOMOUNT?.prefixes ?? []
     },
 
-    ENABLE_DRAFTS_IN_PROD: Boolean(options.ENABLE_DRAFTS_IN_PROD),
-    TESTING_ROOT: options.TESTING_ROOT,
-    allPages: options.allPages
+    ENABLE_DRAFTS_IN_PROD: Boolean(options.ENABLE_DRAFTS_IN_PROD)
   }) as const;
 
 export const createPagesConfig = <TestingRoot extends PageRoot, __Document extends object>(
