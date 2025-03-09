@@ -11,10 +11,10 @@ export type LandingPagesConfigType = {
 
 const TESTING_CATEGORY = 'landing-pages-testing-category' as const satisfies LandingPageCategory;
 
-const LandingPagesConfig: LandingPagesConfigType = {
+const LandingPagesConfig = {
   allLandingPages: () => allLandingPages,
   ENABLE_DRAFTS_IN_PROD: false,
   TESTING_CATEGORY
-} as const;
+} as const satisfies LandingPagesConfigType;
 
 export default LandingPagesConfig;
