@@ -27,8 +27,8 @@ import {
 import { indexedBlogAuthorsNames } from './blog/authorsMetadatas';
 import { indexedBlogTagOptions } from './blog/blogTagsMetadatas';
 import DocumentHeading from './nested-types/DocumentHeading';
-import { blogTagOptions } from './blog/blogTags';
 import { authorsNames } from './blog/authorsLinker';
+import { blogTagOptions } from './blog/blogTags';
 import SEO from './nested-types/SEO';
 
 export const PAGES_FOLDER = 'pages';
