@@ -1,23 +1,30 @@
 import type { WithOptionalProps, Rewire } from '@rtm/shared-types/CustomUtilityTypes';
 import type { PagePath, PageRoot } from '@/types/Page';
-import type { Page } from 'contentlayer/generated';
+import type { Document } from 'contentlayer/core';
 
 import { INDEX_TOKEN } from '##/lib/misc/contentlayerCornerCases';
 import { pipeable } from '@rtm/shared-lib/misc';
 
-type PagesConfigType<TestingRoot extends PageRoot> = {
+type PagesConfigType<TestingRoot extends PageRoot, __Document extends Document> = {
   SKIP_AUTOMOUNT: { prefixes: readonly string[]; paths: readonly PagePath[] };
-  allPages: () => readonly Page[];
+  allPages: () => readonly __Document[];
   ENABLE_DRAFTS_IN_PROD: boolean;
   TESTING_ROOT: TestingRoot;
 };
 
-type Options<TestingRoot extends PageRoot> = WithOptionalProps<PagesConfigType<TestingRoot>, 'ENABLE_DRAFTS_IN_PROD' | 'SKIP_AUTOMOUNT'> &
-  Rewire<PagesConfigType<TestingRoot>, 'TESTING_ROOT', TestingRoot>;
+type Options<TestingRoot extends PageRoot, __Document extends Document> = WithOptionalProps<
+  PagesConfigType<TestingRoot, __Document>,
+  'ENABLE_DRAFTS_IN_PROD' | 'SKIP_AUTOMOUNT'
+> &
+  Rewire<PagesConfigType<TestingRoot, __Document>, 'TESTING_ROOT', TestingRoot>;
 
-const prepareSkipAutomountSection = <TestingRoot extends PageRoot, __Options extends Options<TestingRoot> = Options<TestingRoot>>() =>
+const prepareSkipAutomountSection = <
+  TestingRoot extends PageRoot,
+  __Document extends Document,
+  __Options extends Options<TestingRoot, __Document> = Options<TestingRoot, __Document>
+>() =>
   pipeable(
-    (options: __Options): PagesConfigType<TestingRoot> =>
+    (options: __Options): PagesConfigType<TestingRoot, __Document> =>
       options.SKIP_AUTOMOUNT !== undefined
         ? ({
             ...options,
@@ -38,10 +45,11 @@ const prepareSkipAutomountSection = <TestingRoot extends PageRoot, __Options ext
 
 const forceToIncludeIndexTokenInSkipAutomountPaths = <
   TestingRoot extends PageRoot,
-  __Options extends Options<TestingRoot> = Options<TestingRoot>
+  __Document extends Document,
+  __Options extends Options<TestingRoot, __Document> = Options<TestingRoot, __Document>
 >() =>
   pipeable(
-    (options: __Options): PagesConfigType<TestingRoot> =>
+    (options: __Options): PagesConfigType<TestingRoot, __Document> =>
       ({
         SKIP_AUTOMOUNT: {
           paths: [...(options.SKIP_AUTOMOUNT?.paths ?? []), INDEX_TOKEN as any],
@@ -54,5 +62,7 @@ const forceToIncludeIndexTokenInSkipAutomountPaths = <
       }) as const
   );
 
-export const createPagesConfig = <TestingRoot extends PageRoot>(options: Options<TestingRoot>): PagesConfigType<TestingRoot> =>
-  prepareSkipAutomountSection<TestingRoot>().then(forceToIncludeIndexTokenInSkipAutomountPaths<TestingRoot>())(options);
+export const createPagesConfig = <TestingRoot extends PageRoot, __Document extends Document>(
+  options: Options<TestingRoot, __Document>
+): PagesConfigType<TestingRoot, __Document> =>
+  prepareSkipAutomountSection<TestingRoot, __Document>().then(forceToIncludeIndexTokenInSkipAutomountPaths<TestingRoot, __Document>())(options);
