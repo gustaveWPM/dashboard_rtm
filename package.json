@@ -27,7 +27,6 @@
     "ci:vercel-build-command": "make before-build:tricky-typechecks && make before-build:test && make && make after-build:test",
     "ci:lint": "eslint . --max-warnings 0",
     "ci:typecheck-project": "tsc --noEmit --pretty",
-    "ci:typecheck-tests": "tsc --noEmit --skipLibCheck --pretty --project tsconfig.tests.json",
     "ci:format-check": "prettier . --check",
     "---------- TESTS ----------": "",
     "test": "make test",

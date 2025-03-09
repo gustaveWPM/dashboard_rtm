@@ -5,7 +5,7 @@ import type { Document } from 'contentlayer/core';
 import { INDEX_TOKEN } from '##/lib/misc/contentlayerCornerCases';
 import { pipeable } from '@rtm/shared-lib/misc';
 
-type PagesConfigType<TestingRoot extends PageRoot, __Document extends Document> = {
+export type PagesConfigType<TestingRoot extends PageRoot, __Document extends Document> = {
   SKIP_AUTOMOUNT: { prefixes: readonly string[]; paths: readonly PagePath[] };
   allPages: () => readonly __Document[];
   ENABLE_DRAFTS_IN_PROD: boolean;
