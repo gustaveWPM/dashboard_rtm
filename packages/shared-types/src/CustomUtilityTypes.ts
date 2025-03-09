@@ -56,8 +56,8 @@ export type Rewire<BaseType, KeysToRewire extends keyof BaseType, NewType> = {
   [K in KeysToRewire]: NewType;
 };
 
-export type Pipe<input, output> = {
-  then: <nextOutput>(other: Pipe<output, nextOutput>) => Pipe<input, nextOutput>;
+export type PipeUnit<input, output> = {
+  then: <nextOutput>(other: PipeUnit<output, nextOutput>) => PipeUnit<input, nextOutput>;
   (input: input): output;
 };
 

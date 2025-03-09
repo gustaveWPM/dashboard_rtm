@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import pipe from '../pipe';
+import pipe from '../pipeable';
 
 describe('sortNumbers', () => {
   it('should pipe correctly', () => {

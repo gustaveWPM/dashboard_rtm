@@ -3,7 +3,7 @@ import type { PagePath, PageRoot } from '@/types/Page';
 import type { Page } from 'contentlayer/generated';
 
 import { INDEX_TOKEN } from '##/lib/misc/contentlayerCornerCases';
-import { pipe } from '@rtm/shared-lib/misc';
+import { pipeable } from '@rtm/shared-lib/misc';
 
 type PagesConfigType<TestingRoot extends PageRoot> = {
   SKIP_AUTOMOUNT: { prefixes: readonly string[]; paths: readonly PagePath[] };
@@ -16,7 +16,7 @@ type Options<TestingRoot extends PageRoot> = WithOptionalProps<PagesConfigType<T
   Rewire<PagesConfigType<TestingRoot>, 'TESTING_ROOT', TestingRoot>;
 
 const prepareSkipAutomountSection = <TestingRoot extends PageRoot, __Options extends Options<TestingRoot> = Options<TestingRoot>>() =>
-  pipe(
+  pipeable(
     (options: __Options): PagesConfigType<TestingRoot> =>
       options.SKIP_AUTOMOUNT !== undefined
         ? ({
@@ -36,9 +36,12 @@ const prepareSkipAutomountSection = <TestingRoot extends PageRoot, __Options ext
           } as const)
   );
 
-const forceToIncludeIndexTokenInSkipAutomountPaths = <TestingRoot extends PageRoot>() =>
-  pipe(
-    (options: Options<TestingRoot>): PagesConfigType<TestingRoot> =>
+const forceToIncludeIndexTokenInSkipAutomountPaths = <
+  TestingRoot extends PageRoot,
+  __Options extends Options<TestingRoot> = Options<TestingRoot>
+>() =>
+  pipeable(
+    (options: __Options): PagesConfigType<TestingRoot> =>
       ({
         SKIP_AUTOMOUNT: {
           paths: [...(options.SKIP_AUTOMOUNT?.paths ?? []), INDEX_TOKEN as any],

@@ -4,9 +4,9 @@
 import { unpackIds, packIds } from './portable/misc/urlsPackAndUnpack';
 import isEmptyObject from './portable/misc/isEmptyObject';
 import sortNumbers from './portable/misc/sortNumbers';
-import pipe from './portable/misc/pipe';
+import pipeable from './portable/misc/pipeable';
 
-export { isEmptyObject, sortNumbers, unpackIds, packIds, pipe };
+export { isEmptyObject, sortNumbers, unpackIds, pipeable, packIds };
 
 // Stryker restore all
 /* v8 ignore stop */
