@@ -153,5 +153,6 @@
   "engines": {
     "node": "^22.x",
     "pnpm": "10.x"
-  }
+  },
+  "packageManager": "pnpm@10.6.1"
 }
