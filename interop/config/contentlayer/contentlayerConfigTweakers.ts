@@ -24,8 +24,7 @@ import {
   buildPagePath,
   buildPageUrl
 } from '../../lib/builders';
-import { authorsNames } from '../../linkers/contentlayer/blog/authors';
-import { indexedBlogAuthorsNames } from './blog/authorsMetadatas';
+import { indexedBlogAuthorsNames, authorsNames } from '../../linkers/contentlayer/blog/authors';
 import { indexedBlogTagOptions } from './blog/blogTagsMetadatas';
 import DocumentHeading from './nested-types/DocumentHeading';
 import { blogTagOptions } from './blog/blogTags';

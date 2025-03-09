@@ -3,8 +3,8 @@
 
 import type { TypedLeafsVocabData } from '@rtm/shared-types/I18n';
 
-import { blogAuthorOptionsVocabSchema } from '##/config/contentlayer/blog/authorsMetadatas';
 import { blogTagOptionsVocabSchema } from '##/config/contentlayer/blog/blogTagsMetadatas';
+import { blogAuthorOptionsVocabSchema } from '##/linkers/contentlayer/blog/authors';
 import { blogCategories } from '@rtm/generated';
 
 import PAGES_TITLES from './fragments/schema/pagesTitles';
