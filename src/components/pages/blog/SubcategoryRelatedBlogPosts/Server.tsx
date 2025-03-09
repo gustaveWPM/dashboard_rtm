@@ -1,5 +1,5 @@
 import type { BlogPostPreviewComponentWithMetadatas, BlogCategoriesAndSubcategoriesAssoc, BlogSubcategoryPageProps, BlogTagId } from '@/types/Blog';
-import type { BlogTag } from '##/config/contentlayer/blog/blogTags';
+import type { BlogTag } from '##/config/contentlayer/blog/tags';
 import type { FunctionComponent } from 'react';
 
 import {

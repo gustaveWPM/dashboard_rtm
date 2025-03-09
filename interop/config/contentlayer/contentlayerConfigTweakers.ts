@@ -25,9 +25,9 @@ import {
   buildPageUrl
 } from '../../lib/builders';
 import { indexedBlogAuthorsNames, authorsNames } from '../../linkers/contentlayer/blog/authors';
-import { indexedBlogTagOptions } from './blog/blogTagsMetadatas';
+import { indexedBlogTagOptions } from '../../linkers/contentlayer/blog/tags';
 import DocumentHeading from './nested-types/DocumentHeading';
-import { blogTagOptions } from './blog/blogTags';
+import { blogTagOptions } from './blog/tags';
 import SEO from './nested-types/SEO';
 
 export const PAGES_FOLDER = 'pages';

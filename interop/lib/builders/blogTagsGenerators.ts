@@ -3,7 +3,7 @@ import type { Index, Id } from '@rtm/shared-types/Numbers';
 
 const emptyString: EmptyString = '';
 
-export const generateIndexedBlogTagOptions = <BlogTagOptions extends readonly string[]>(
+export const createIndexedBlogTagOptions = <BlogTagOptions extends readonly string[]>(
   blogTagOptions: BlogTagOptions
 ): Record<BlogTagOptions[Index], Id> =>
   blogTagOptions.reduce<Record<string, Id>>((acc, tag, index) => {
@@ -11,7 +11,7 @@ export const generateIndexedBlogTagOptions = <BlogTagOptions extends readonly st
     return acc;
   }, {}) as Record<BlogTagOptions[Index], Id>;
 
-export const generateBlogTagOptionsVocabSchema = <BlogTagOptions extends readonly string[]>(
+export const createBlogTagOptionsVocabSchema = <BlogTagOptions extends readonly string[]>(
   blogTagOptions: BlogTagOptions
 ): Record<BlogTagOptions[Index], EmptyString> =>
   blogTagOptions.reduce<Record<string, EmptyString>>((acc, tag) => {

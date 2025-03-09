@@ -36,6 +36,7 @@ function validateContentlayerBlogTagsList(__BLOG_TAGS_OPTIONS: readonly string[]
       duplicatesSet.add(currentTag);
       continue;
     }
+
     blogTagsMemory.push(currentTag);
   }
 

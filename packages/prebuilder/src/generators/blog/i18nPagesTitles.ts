@@ -23,7 +23,7 @@ export default async function generateI18nPagesTitles(
 ) {
   const project = new Project();
 
-  const pagesTitles = {} as Record<string, string>;
+  const pagesTitles: Record<string, string> = {};
   for (const category of Object.keys(blogArchitecture)) {
     pagesTitles[category] = emptyString;
     for (const subcategory of Object.keys(blogArchitecture[category])) pagesTitles[subcategory] = emptyString;

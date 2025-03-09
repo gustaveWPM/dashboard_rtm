@@ -52,7 +52,7 @@ function mergeScoresMaps(scoresMap1: ScoresMap, scoresMap2: ScoresMap, invalidBl
 }
 
 function buildDamerauMap(invalidBlogTags: InvalidTag[], __BLOG_TAGS_OPTIONS: readonly Tag[], __DAMERAU_THRESHOLD: Limit) {
-  const damerauMap = {} as ScoresMap;
+  const damerauMap: ScoresMap = {};
 
   for (const invalidTag of invalidBlogTags) {
     for (const blogTag of __BLOG_TAGS_OPTIONS) {
@@ -71,7 +71,7 @@ function buildDamerauMap(invalidBlogTags: InvalidTag[], __BLOG_TAGS_OPTIONS: rea
 }
 
 function buildStartingWithMap(invalidBlogTags: InvalidTag[], __BLOG_TAGS_OPTIONS: readonly Tag[]) {
-  const startingWithMap = {} as ScoresMap;
+  const startingWithMap: ScoresMap = {};
 
   for (const invalidTag of invalidBlogTags) {
     for (const blogTag of __BLOG_TAGS_OPTIONS) {

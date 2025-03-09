@@ -2,7 +2,7 @@
 
 import type { BlogPostPreviewComponentWithMetadatas, BlogTagId } from '@/types/Blog';
 import type { MaybeNull } from '@rtm/shared-types/CustomUtilityTypes';
-import type { BlogTag } from '##/config/contentlayer/blog/blogTags';
+import type { BlogTag } from '##/config/contentlayer/blog/tags';
 import type { ReactElementKey } from '@rtm/shared-types/React';
 import type { Limit, Id } from '@rtm/shared-types/Numbers';
 import type { FunctionComponent } from 'react';

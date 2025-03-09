@@ -6,13 +6,13 @@ import {
 } from '../../config/contentlayer/contentlayerConfigTweakers';
 import { throwIfForbiddenToUseIndexErrorBlogCtx, throwIfForbiddenToUseIndexErrorLpCtx, getPathWithIndexSuffix } from './helpers';
 import getPathWithoutExtension from '../../../packages/shared-lib/src/portable/str/getPathWithoutExtension';
-import { indexedBlogTagOptions } from '../../config/contentlayer/blog/blogTagsMetadatas';
 import indexOfNthOccurrence from '../../../src/lib/portable/str/indexOfNthOccurrence';
 import isValidLanguageFlag from '../../../src/lib/portable/i18n/isValidLanguageFlag';
 import getFlattenedPathWithoutRootFolder from './getFlattenedPathWithoutRootFolder';
-import { blogTagOptions } from '../../config/contentlayer/blog/blogTags';
+import { indexedBlogTagOptions } from '../../linkers/contentlayer/blog/tags';
 import ForbiddenToUseIndexError from '../../errors/ForbiddenToUseIndex';
 import { INDEX_TOKEN, BULLET } from '../misc/contentlayerCornerCases';
+import { blogTagOptions } from '../../config/contentlayer/blog/tags';
 import BlogAuthorDuplicates from '../../errors/BlogAuthorDuplicates';
 import capitalize from '../../../src/lib/portable/str/capitalize';
 import InvalidArgumentsError from '../../errors/InvalidArguments';
