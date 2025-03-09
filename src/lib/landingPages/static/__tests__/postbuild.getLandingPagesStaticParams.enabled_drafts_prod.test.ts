@@ -1,11 +1,13 @@
 import type { LpFakeLanguageType } from '𝕍/testingContentCategoryDatas';
-import type { LandingPagesConfigType } from '@/config/landingPages';
 import type { LandingPage } from 'contentlayer/generated';
+import type { Index } from '@rtm/shared-types/Numbers';
 
 import { TESTING_LP_FAKE_LANGUAGES } from '𝕍/testingContentCategoryDatas';
 import LandingPageTaxonomy from '##/config/taxonomies/landingPages';
 import I18nTaxonomy from '##/config/taxonomies/i18n';
 import { describe, expect, it, vi } from 'vitest';
+
+import type { LandingPagesConfigType } from '../../configBuilder';
 
 import getLandingPagesStaticParams from '../getLandingPagesStaticParams';
 
@@ -156,7 +158,7 @@ vi.mock('@/config/landingPages', async (orgImport) => {
       ...mod.default,
       allLandingPages: () => data as unknown as LandingPage[],
       ENABLE_DRAFTS_IN_PROD: true
-    } satisfies LandingPagesConfigType
+    } satisfies LandingPagesConfigType<typeof mod.default.TESTING_CATEGORY, ReturnType<typeof mod.default.allLandingPages>[Index]>
   };
 });
 

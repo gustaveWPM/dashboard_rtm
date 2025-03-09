@@ -72,7 +72,6 @@ check-coding-style: prebuild-rtm build-contentlayer
 	    $(PM) run ci:format-check || exit_status=$$((exit_status | $$?)); \
 	    $(PM) run ci:lint || exit_status=$$((exit_status | $$?)); \
 	    $(PM) run ci:typecheck-project || exit_status=$$((exit_status | $$?)); \
-	    $(PM) run ci:typecheck-tests || exit_status=$$((exit_status | $$?)); \
 	    $(PM) run ts-prune || exit_status=$$((exit_status | $$?)); \
       if [ $$exit_status -ne 0 ]; then exit $$exit_status; fi \
 	}

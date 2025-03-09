@@ -1,10 +1,12 @@
-import type { LandingPagesConfigType } from '@/config/landingPages';
 import type { LandingPage } from 'contentlayer/generated';
+import type { Index } from '@rtm/shared-types/Numbers';
 
 import LandingPagesConfig from '@/config/landingPages';
 import { DEFAULT_LANGUAGE } from '##/config/i18n';
 import { describe, expect, it, vi } from 'vitest';
 import ROUTES_ROOTS from '##/config/routes';
+
+import type { LandingPagesConfigType } from '../configBuilder';
 
 import { getLandingPageByLanguageAndSlugStrict } from '../api';
 
@@ -16,7 +18,7 @@ vi.mock('@/config/landingPages', async (orgImport) => {
     default: {
       ...mod.default,
       ENABLE_DRAFTS_IN_PROD: false
-    } satisfies LandingPagesConfigType
+    } satisfies LandingPagesConfigType<typeof mod.default.TESTING_CATEGORY, ReturnType<typeof mod.default.allLandingPages>[Index]>
   };
 });
 

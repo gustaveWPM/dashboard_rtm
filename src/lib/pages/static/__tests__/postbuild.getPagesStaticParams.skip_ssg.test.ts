@@ -1,4 +1,5 @@
 import type { PagesConfigType } from '@/lib/pages/configBuilder';
+import type { Index } from '@rtm/shared-types/Numbers';
 import type { Page } from 'contentlayer/generated';
 import type { PagePath } from '@/types/Page';
 
@@ -86,7 +87,7 @@ vi.mock('@/config/pages', async (orgImport) => {
       SKIP_AUTOMOUNT: { paths: ['page-00'] as unknown as PagePath[], prefixes: ['skipped'] },
       allPages: () => data as unknown as Page[],
       ENABLE_DRAFTS_IN_PROD: true
-    } satisfies PagesConfigType<typeof mod.default.TESTING_ROOT>
+    } satisfies PagesConfigType<typeof mod.default.TESTING_ROOT, ReturnType<typeof mod.default.allPages>[Index]>
   };
 });
 
