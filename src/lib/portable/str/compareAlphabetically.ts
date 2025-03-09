@@ -7,6 +7,6 @@ export const compareAlphabeticallyAsc: StringsCompareFun = (s1, s2, locale) => s
 
 // Stryker Workaround 2. Pointless mutant (just a localeCompare wrapper)
 // Stryker disable next-line all
-export const compareAlphabeticallyDesc: StringsCompareFun = (s1, s2, locale) => -s1.localeCompare(s2, locale, { sensitivity: 'base' });
+export const compareAlphabeticallyDesc: StringsCompareFun = (s1, s2, locale) => -compareAlphabeticallyAsc(s1, s2, locale);
 
 /* v8 ignore stop */
