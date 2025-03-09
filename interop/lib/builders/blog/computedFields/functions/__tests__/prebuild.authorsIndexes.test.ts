@@ -10,13 +10,10 @@ const fakeAuthorsNames = ['fake_author_one', 'fake_author_two', 'fake_author_thr
 
 type FakeBlogAuthor = CreateAuthorsNames<typeof fakeAuthorsNames>;
 
-const fakeIndexedAuthorsNames = fakeAuthorsNames.reduce(
-  (acc, tag, index) => {
-    acc[tag] = index;
-    return acc;
-  },
-  {} as Record<string, Id>
-) as Record<FakeBlogAuthor, Id>;
+const fakeIndexedAuthorsNames = fakeAuthorsNames.reduce<Record<string, Id>>((acc, tag, index) => {
+  acc[tag] = index;
+  return acc;
+}, {}) as Record<FakeBlogAuthor, Id>;
 
 describe('buildBlogAuthorsIndexes (happy path)', () => {
   it('should return a valid tag indexes array, given valid tagsArray', () => {

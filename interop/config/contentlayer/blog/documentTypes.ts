@@ -17,6 +17,7 @@ const blogDocumentTypes: DocumentType[] = Object.entries(blogDocumentsTypes).red
   (acc, [name, blogDocumentsType]) => {
     const { categoryFolder } = blogDocumentsType;
     const filePathPattern = BLOG_POSTS_FOLDER + '/' + categoryFolder + `/**/*.${EXT}`;
+
     acc.push(
       defineDocumentType(
         () =>

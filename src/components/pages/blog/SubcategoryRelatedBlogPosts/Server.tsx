@@ -42,7 +42,7 @@ const SubcategoryRelatedBlogPosts: FunctionComponent<BlogSubcategoryPageProps> =
   else if (postsCollection.length === 0) return <BlogPostsNotFound />;
 
   const tags = Array.from(
-    new Set<BlogTag>(postsCollection.reduce((accumulator, currentValue) => accumulator.concat(currentValue.tags), [] as BlogTag[]))
+    new Set<BlogTag>(postsCollection.reduce<BlogTag[]>((accumulator, currentValue) => accumulator.concat(currentValue.tags), []))
   );
 
   const scopedT = await getScopedI18n(i18ns.blogCategories);

@@ -9,13 +9,10 @@ const fakeBlogTags = ['fake_tag_one', 'fake_tag_two', 'fake_tag_three', 'uniq_fa
 
 const damerauThreshold = 3;
 
-const fakeIndexedBlogTagOptions = fakeBlogTags.reduce(
-  (acc, tag, index) => {
-    acc[tag] = index;
-    return acc;
-  },
-  {} as Record<string, Id>
-) as Record<FakeBlogTag, Id>;
+const fakeIndexedBlogTagOptions = fakeBlogTags.reduce<Record<string, Id>>((acc, tag, index) => {
+  acc[tag] = index;
+  return acc;
+}, {}) as Record<FakeBlogTag, Id>;
 
 describe('buildBlogTagsIndexes (happy path)', () => {
   it('should return a valid tag indexes array, given valid tagsArray', () => {
