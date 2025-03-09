@@ -14,6 +14,7 @@ export type BlogConfigType = {
     SUBCATEGORIES_PICTURES: SubcategoriesOGPictures;
     CATEGORIES_PICTURES: CategoriesOGPictures;
   };
+
   DEFAULT_COMPARE_FUNCTION_USED_TO_SORT_SUBCATEGORIES_ON_BLOG_CATEGORY_PAGE: StringsCompareFun;
   DEFAULT_COMPARE_FUNCTION_USED_TO_SORT_POSTS_ON_BLOG_CATEGORY_PAGE: DatesCompareFun;
   USE_BLOG_POSTS_NOTFOUND_WHEN_SUBCATEGORY_IS_EMPTY_INSTEAD_OF_NOT_FOUND: boolean;
@@ -39,6 +40,7 @@ const SUBCATEGORIES_OG_PICTURES = {
     'discord-bot-bis': ['/assets/medias/img/dev/placeholders/placeholder-63.jpeg'],
     'dashboard-bis': ['/assets/medias/img/dev/placeholders/placeholder-64.jpeg']
   },
+
   'patch-notes': {
     'discord-bot': ['/assets/medias/img/dev/placeholders/placeholder-62.jpeg'],
     dashboard: ['/assets/medias/img/dev/placeholders/placeholder-61.jpeg']
