@@ -56,10 +56,5 @@ export type Rewire<BaseType, KeysToRewire extends keyof BaseType, NewType> = {
   [K in KeysToRewire]: NewType;
 };
 
-export type PipeUnit<input, output> = {
-  then: <nextOutput>(other: PipeUnit<output, nextOutput>) => PipeUnit<input, nextOutput>;
-  (input: input): output;
-};
-
 // Stryker restore all
 /* v8 ignore stop */

@@ -66,9 +66,6 @@
       "portable/html/snapToTopLeft": [
         "./src/portable/html/snapToTopLeft.ts"
       ],
-      "portable/misc/pipeable": [
-        "./src/portable/misc/pipeable.ts"
-      ],
       "portable/misc/isEmptyObject": [
         "./src/portable/misc/isEmptyObject.ts"
       ],
