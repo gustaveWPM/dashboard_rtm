@@ -10,6 +10,7 @@ export type LandingPagesConfigType = {
 };
 
 const TESTING_CATEGORY = 'landing-pages-testing-category' as const satisfies LandingPageCategory;
+
 const LandingPagesConfig: LandingPagesConfigType = {
   allLandingPages: () => allLandingPages,
   ENABLE_DRAFTS_IN_PROD: false,

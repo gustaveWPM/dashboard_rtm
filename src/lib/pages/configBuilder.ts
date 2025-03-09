@@ -23,33 +23,26 @@ const prepareSkipAutomountSection = <
   __Document extends Document,
   __Options extends Options<TestingRoot, __Document> = Options<TestingRoot, __Document>
 >() =>
-  pipeable(
-    (options: __Options): PagesConfigType<TestingRoot, __Document> =>
-      options.SKIP_AUTOMOUNT !== undefined
-        ? ({
-            ...options,
-            ENABLE_DRAFTS_IN_PROD: Boolean(options.ENABLE_DRAFTS_IN_PROD),
-            SKIP_AUTOMOUNT: options.SKIP_AUTOMOUNT
-          } as const)
-        : ({
-            SKIP_AUTOMOUNT: {
-              prefixes: [],
-              paths: []
-            },
+  pipeable((options: __Options) =>
+    options.SKIP_AUTOMOUNT !== undefined
+      ? options
+      : ({
+          ...options,
 
-            ENABLE_DRAFTS_IN_PROD: Boolean(options.ENABLE_DRAFTS_IN_PROD),
-            TESTING_ROOT: options.TESTING_ROOT,
-            allPages: options.allPages
-          } as const)
+          SKIP_AUTOMOUNT: {
+            prefixes: [],
+            paths: []
+          }
+        } as const)
   );
 
-const forceToIncludeIndexTokenInSkipAutomountPaths = <
+const forceToIncludeIndexTokenInSkipAutomountPathsAndCastDraftsInProdEnabler = <
   TestingRoot extends PageRoot,
   __Document extends Document,
   __Options extends Options<TestingRoot, __Document> = Options<TestingRoot, __Document>
 >() =>
   pipeable(
-    (options: __Options): PagesConfigType<TestingRoot, __Document> =>
+    (options: __Options) =>
       ({
         SKIP_AUTOMOUNT: {
           paths: [...(options.SKIP_AUTOMOUNT?.paths ?? []), INDEX_TOKEN as any],
@@ -65,4 +58,6 @@ const forceToIncludeIndexTokenInSkipAutomountPaths = <
 export const createPagesConfig = <TestingRoot extends PageRoot, __Document extends Document>(
   options: Options<TestingRoot, __Document>
 ): PagesConfigType<TestingRoot, __Document> =>
-  prepareSkipAutomountSection<TestingRoot, __Document>().then(forceToIncludeIndexTokenInSkipAutomountPaths<TestingRoot, __Document>())(options);
+  prepareSkipAutomountSection<TestingRoot, __Document>().then(
+    forceToIncludeIndexTokenInSkipAutomountPathsAndCastDraftsInProdEnabler<TestingRoot, __Document>()
+  )(options);
