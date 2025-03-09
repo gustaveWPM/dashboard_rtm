@@ -1,4 +1,4 @@
-import type { PagesConfigType } from '@/config/pages';
+import type { PagesConfigType } from '@/lib/pages/configBuilder';
 import type { Page } from 'contentlayer/generated';
 
 import { TESTING_PAGES_FAKE_LANGUAGES } from '𝕍/testingContentCategoryDatas';
@@ -246,7 +246,7 @@ vi.mock('@/config/pages', async (orgImport) => {
       SKIP_AUTOMOUNT: { prefixes: [], paths: [] },
       allPages: () => data as unknown as Page[],
       ENABLE_DRAFTS_IN_PROD: false
-    } satisfies PagesConfigType
+    } satisfies PagesConfigType<typeof mod.default.TESTING_ROOT>
   };
 });
 

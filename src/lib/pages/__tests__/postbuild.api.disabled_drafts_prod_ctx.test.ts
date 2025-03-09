@@ -1,4 +1,4 @@
-import type { PagesConfigType } from '@/config/pages';
+import type { PagesConfigType } from '@/lib/pages/configBuilder';
 import type { Page } from 'contentlayer/generated';
 
 import { DEFAULT_LANGUAGE } from '##/config/i18n';
@@ -17,7 +17,7 @@ vi.mock('@/config/pages', async (orgImport) => {
       ...mod.default,
       SKIP_AUTOMOUNT: { prefixes: [], paths: [] },
       ENABLE_DRAFTS_IN_PROD: false
-    } satisfies PagesConfigType
+    } satisfies PagesConfigType<typeof mod.default.TESTING_ROOT>
   };
 });
 

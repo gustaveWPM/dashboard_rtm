@@ -1,27 +1,10 @@
-import type { PagePath, PageRoot } from '@/types/Page';
-import type { Page } from 'contentlayer/generated';
-
 import { allPages } from 'contentlayer/generated';
 
-export type PagesConfigType = {
-  SKIP_AUTOMOUNT: { prefixes: string[]; paths: PagePath[] };
-  TESTING_ROOT: typeof TESTING_ROOT;
-  ENABLE_DRAFTS_IN_PROD: boolean;
-  allPages: () => Page[];
-};
+import { createPagesConfig } from '../lib/pages/configBuilder';
 
-const TESTING_ROOT = 'testing-pages-root' as const satisfies PageRoot;
-const PagesConfig: PagesConfigType = {
-  SKIP_AUTOMOUNT: {
-    paths: [
-      // @ts-ignore always skip 'index.mdx' (homepage cannot be notFound) automount
-      'index'
-    ],
-    prefixes: []
-  },
-  ENABLE_DRAFTS_IN_PROD: false,
-  allPages: () => allPages,
-  TESTING_ROOT
-} as const;
+const PagesConfig = createPagesConfig({
+  TESTING_ROOT: 'testing-pages-root',
+  allPages: () => allPages
+});
 
 export default PagesConfig;

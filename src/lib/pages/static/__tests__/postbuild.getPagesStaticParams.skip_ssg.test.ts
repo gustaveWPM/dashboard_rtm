@@ -1,4 +1,4 @@
-import type { PagesConfigType } from '@/config/pages';
+import type { PagesConfigType } from '@/lib/pages/configBuilder';
 import type { Page } from 'contentlayer/generated';
 import type { PagePath } from '@/types/Page';
 
@@ -12,6 +12,7 @@ import getPageStaticParams from '../getPageStaticParams';
 vi.mock('../../../../../interop/config/i18n', async (orgImport) => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-imports
   const mod = await orgImport<typeof import('../../../../../interop/config/i18n')>();
+
   return {
     ...mod,
     LANGUAGES: Array.from(new Set<string>([mod.DEFAULT_LANGUAGE, ...TESTING_PAGES_FAKE_LANGUAGES]))
@@ -85,7 +86,7 @@ vi.mock('@/config/pages', async (orgImport) => {
       SKIP_AUTOMOUNT: { paths: ['page-00'] as unknown as PagePath[], prefixes: ['skipped'] },
       allPages: () => data as unknown as Page[],
       ENABLE_DRAFTS_IN_PROD: true
-    } satisfies PagesConfigType
+    } satisfies PagesConfigType<typeof mod.default.TESTING_ROOT>
   };
 });
 

@@ -50,5 +50,16 @@ type CompareFunReturnValue = number;
 
 export type EmptyString = '';
 
+export type WithOptionalProps<T, OptionalKeys extends keyof T> = Partial<Pick<T, OptionalKeys>> & Omit<T, OptionalKeys>;
+
+export type Rewire<BaseType, KeysToRewire extends keyof BaseType, NewType> = {
+  [K in KeysToRewire]: NewType;
+};
+
+export type Pipe<input, output> = {
+  then: <nextOutput>(other: Pipe<output, nextOutput>) => Pipe<input, nextOutput>;
+  (input: input): output;
+};
+
 // Stryker restore all
 /* v8 ignore stop */

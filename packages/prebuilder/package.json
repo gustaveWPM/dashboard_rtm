@@ -20,7 +20,7 @@
   "devDependencies": {
     "@babel/types": "^7.24.0",
     "@rtm/shared-types": "*",
-    "typescript": "^5.4.4"
+    "typescript": "^5.8.2"
   },
   "engines": {
     "pnpm": "10.x"
