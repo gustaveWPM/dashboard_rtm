@@ -1,12 +1,13 @@
 /* v8 ignore start */
 // Stryker disable all
 
-import { generateBlogAuthorOptionsVocabSchema, generateIndexedAuthorNames } from '../../../lib/builders/blogAuthorsGenerators';
-import { authorNames } from './authors';
+import { createBlogAuthorsOptionsVocabSchema, createIndexedAuthorsNames } from '../../../lib/builders/blogAuthorsGenerators';
+import { authorsNames } from './authorsLinker';
 
-export const indexedBlogAuthorNames = generateIndexedAuthorNames(authorNames);
-
-export const blogAuthorOptionsVocabSchema = generateBlogAuthorOptionsVocabSchema(authorNames);
+export const [indexedBlogAuthorsNames, blogAuthorOptionsVocabSchema] = [
+  createIndexedAuthorsNames(authorsNames),
+  createBlogAuthorsOptionsVocabSchema(authorsNames)
+];
 
 // Stryker restore all
 /* v8 ignore stop */

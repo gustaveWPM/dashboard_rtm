@@ -4,7 +4,7 @@ import type { Index } from '@rtm/shared-types/Numbers';
 
 import { BlogAuthorDuplicates, InvalidBlogAuthor, BULLET } from '../../../unifiedImport';
 
-function validateAuthorNames<AuthorName extends string>(
+function validateAuthorsNames<AuthorName extends string>(
   authorsNamesArrayUniq: AuthorName[],
   indexedAuthorsNames: Record<AuthorName, Index>,
   authorsNames: readonly AuthorName[]
@@ -32,6 +32,7 @@ function validateAuthorsNoDuplicates(authorsNamesArray: string[]): MaybeNull<Blo
       duplicatesSet.add(currentName);
       continue;
     }
+
     authorsMemory.push(currentName);
   }
 
@@ -51,10 +52,10 @@ function buildBlogAuthorsFromPostObj<AuthorName extends string>(
 ): Index[] {
   const authorsNamesArrayUniq = Array.from(new Set<AuthorName>(authorsNamesArray));
 
-  const maybeValidateAuthorNamesError = validateAuthorNames(authorsNamesArrayUniq, indexedAuthorsNames, authorsNames);
+  const maybeValidateAuthorsNamesError = validateAuthorsNames(authorsNamesArrayUniq, indexedAuthorsNames, authorsNames);
   const maybeValidateAuthorsNoDuplicatesError = validateAuthorsNoDuplicates(authorsNamesArray as string[]);
 
-  const mergedErrors = [maybeValidateAuthorNamesError, maybeValidateAuthorsNoDuplicatesError].filter((e) => e !== null);
+  const mergedErrors = [maybeValidateAuthorsNamesError, maybeValidateAuthorsNoDuplicatesError].filter((e) => e !== null);
 
   // eslint-disable-next-line no-magic-numbers
   if (mergedErrors.length > 0) throw mergedErrors.join('\n' + BULLET + ' ');

@@ -24,11 +24,11 @@ import {
   buildPagePath,
   buildPageUrl
 } from '../../lib/builders';
+import { indexedBlogAuthorsNames } from './blog/authorsMetadatas';
 import { indexedBlogTagOptions } from './blog/blogTagsMetadatas';
-import { indexedBlogAuthorNames } from './blog/authorsMetadatas';
 import DocumentHeading from './nested-types/DocumentHeading';
 import { blogTagOptions } from './blog/blogTags';
-import { authorNames } from './blog/authors';
+import { authorsNames } from './blog/authorsLinker';
 import SEO from './nested-types/SEO';
 
 export const PAGES_FOLDER = 'pages';
@@ -40,9 +40,9 @@ export const DOCUMENTS_CONTENT_TYPE: DocumentContentType = 'mdx';
 export const DOCUMENTS_CONTENT_EXTENSION = 'mdx';
 
 const _ALL_BLOG_FIELDS = {
-  tags: {
+  authors: {
     of: {
-      options: blogTagOptions,
+      options: authorsNames,
       type: 'enum'
     },
     required: false,
@@ -50,9 +50,9 @@ const _ALL_BLOG_FIELDS = {
     default: []
   },
 
-  authors: {
+  tags: {
     of: {
-      options: authorNames,
+      options: blogTagOptions,
       type: 'enum'
     },
     required: false,
@@ -238,7 +238,7 @@ const _ALL_PAGES_FIELDS = {
 
 export const BLOG_DOCUMENTS_COMPUTED_FIELDS = {
   authorsIndexes: {
-    resolve: (post) => buildBlogAuthorsIndexes(post, indexedBlogAuthorNames, authorNames),
+    resolve: (post) => buildBlogAuthorsIndexes(post, indexedBlogAuthorsNames, authorsNames),
     type: _ALL_BLOG_FIELDS.authorsIndexes.type
   },
   tagsIndexes: { resolve: (post) => buildBlogTagsIndexes(post, indexedBlogTagOptions, blogTagOptions), type: _ALL_BLOG_FIELDS.tagsIndexes.type },

@@ -1,13 +1,16 @@
 import type { DocumentToCompute } from '@rtm/shared-types/ContentlayerConfig';
-import type { Index, Id } from '@rtm/shared-types/Numbers';
+import type { CreateAuthorsNames } from '@rtm/shared-types/Blog';
+import type { Id } from '@rtm/shared-types/Numbers';
 
 import { describe, expect, it } from 'vitest';
 
 import buildBlogAuthorsIndexes from '../authorsIndexes';
 
-const fakeAuthorNames = ['fake_author_one', 'fake_author_two', 'fake_author_three'] as const;
+const fakeAuthorsNames = ['fake_author_one', 'fake_author_two', 'fake_author_three'] as const;
 
-const fakeIndexedAuthorNames = fakeAuthorNames.reduce(
+type FakeBlogAuthor = CreateAuthorsNames<typeof fakeAuthorsNames>;
+
+const fakeIndexedAuthorsNames = fakeAuthorsNames.reduce(
   (acc, tag, index) => {
     acc[tag] = index;
     return acc;
@@ -25,7 +28,7 @@ describe('buildBlogAuthorsIndexes (happy path)', () => {
       }
     } satisfies Pick<DocumentToCompute, 'authors'> as Partial<DocumentToCompute> as DocumentToCompute;
 
-    const authorsIndexes = buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorNames, fakeAuthorNames);
+    const authorsIndexes = buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorsNames, fakeAuthorsNames);
 
     // eslint-disable-next-line no-magic-numbers
     expect(authorsIndexes).toStrictEqual([1, 0]);
@@ -46,7 +49,7 @@ describe('buildBlogAuthorsIndexes (unhappy path, duplicate authors)', () => {
     } satisfies Pick<DocumentToCompute, 'authors'> as Partial<DocumentToCompute> as DocumentToCompute;
 
     try {
-      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorNames, fakeAuthorNames);
+      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorsNames, fakeAuthorsNames);
     } catch (e) {
       expect(e).toBe('BlogAuthorDuplicatesError: “fake_author_two” is defined several times.');
     }
@@ -65,7 +68,7 @@ describe('buildBlogAuthorsIndexes (unhappy path, duplicate authors)', () => {
     } satisfies Pick<DocumentToCompute, 'authors'> as Partial<DocumentToCompute> as DocumentToCompute;
 
     try {
-      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorNames, fakeAuthorNames);
+      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorsNames, fakeAuthorsNames);
     } catch (e) {
       expect(e).toBe('BlogAuthorDuplicatesError: [“fake_author_one”, “fake_author_two”] are defined several times.');
     }
@@ -87,7 +90,7 @@ describe('buildBlogAuthorsIndexes (unhappy path, unknown authors)', () => {
     } satisfies Pick<DocumentToCompute, 'authors'> as Partial<DocumentToCompute> as DocumentToCompute;
 
     try {
-      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorNames, fakeAuthorNames);
+      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorsNames, fakeAuthorsNames);
     } catch (e) {
       expect(e).toBe(`InvalidBlogAuthorError: Invalid author: “__UNKNOWN__”
   Valid authors are: [“fake_author_one”, “fake_author_two”, “fake_author_three”]`);
@@ -108,7 +111,7 @@ describe('buildBlogAuthorsIndexes (unhappy path, unknown authors)', () => {
     } satisfies Pick<DocumentToCompute, 'authors'> as Partial<DocumentToCompute> as DocumentToCompute;
 
     try {
-      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorNames, fakeAuthorNames);
+      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorsNames, fakeAuthorsNames);
     } catch (e) {
       expect(e).toBe(`InvalidBlogAuthorError: Invalid authors: [“__UNKNOWN__”, “__UNKNOWN_2__”]
   Valid authors are: [“fake_author_one”, “fake_author_two”, “fake_author_three”]`);
@@ -131,7 +134,7 @@ describe('buildBlogAuthorsIndexes (unhappy path, unknown authors and duplicate a
     } satisfies Pick<DocumentToCompute, 'authors'> as Partial<DocumentToCompute> as DocumentToCompute;
 
     try {
-      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorNames, fakeAuthorNames);
+      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorsNames, fakeAuthorsNames);
     } catch (e) {
       expect(e).toBe(`InvalidBlogAuthorError: Invalid author: “__UNKNOWN__”
   Valid authors are: [“fake_author_one”, “fake_author_two”, “fake_author_three”]
@@ -161,7 +164,7 @@ describe('buildBlogAuthorsIndexes (unhappy path, unknown authors and duplicate a
     } satisfies Pick<DocumentToCompute, 'authors'> as Partial<DocumentToCompute> as DocumentToCompute;
 
     try {
-      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorNames, fakeAuthorNames);
+      buildBlogAuthorsIndexes(partialFakePost, fakeIndexedAuthorsNames, fakeAuthorsNames);
     } catch (e) {
       expect(e).toBe(`InvalidBlogAuthorError: Invalid authors: [“__UNKNOWN__”, “__UNKNOWN_2__”]
   Valid authors are: [“fake_author_one”, “fake_author_two”, “fake_author_three”]
@@ -169,5 +172,3 @@ describe('buildBlogAuthorsIndexes (unhappy path, unknown authors and duplicate a
     }
   });
 });
-
-type FakeBlogAuthor = (typeof fakeAuthorNames)[Index];

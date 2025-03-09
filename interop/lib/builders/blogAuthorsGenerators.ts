@@ -3,22 +3,18 @@ import type { Index, Id } from '@rtm/shared-types/Numbers';
 
 const emptyString: EmptyString = '';
 
-export const generateIndexedAuthorNames = <T extends readonly string[]>(authorNames: T): Record<T[Index], Id> =>
-  authorNames.reduce(
-    (acc, tag, index) => {
-      acc[tag] = index;
-      return acc;
-    },
-    {} as Record<string, Id>
-  ) as Record<T[Index], Id>;
+export const createIndexedAuthorsNames = <AuthorsNames extends readonly string[]>(authorsNames: AuthorsNames): Record<AuthorsNames[Index], Id> =>
+  authorsNames.reduce<Record<string, Id>>((acc, tag, index) => {
+    acc[tag] = index;
+    return acc;
+  }, {}) as Record<AuthorsNames[Index], Id>;
 
-export const generateBlogAuthorOptionsVocabSchema = <T extends readonly string[]>(authorNames: T): Record<T[Index], AuthorVocabArborescence> =>
-  authorNames.reduce(
-    (acc, tag) => {
-      acc[tag] = { alt: emptyString, bio: emptyString };
-      return acc;
-    },
-    {} as Record<string, AuthorVocabArborescence>
-  ) as Record<T[Index], AuthorVocabArborescence>;
+export const createBlogAuthorsOptionsVocabSchema = <AuthorsNames extends readonly string[]>(
+  authorsNames: AuthorsNames
+): Record<AuthorsNames[Index], AuthorVocabArborescence> =>
+  authorsNames.reduce<Record<string, AuthorVocabArborescence>>((acc, tag) => {
+    acc[tag] = { alt: emptyString, bio: emptyString };
+    return acc;
+  }, {}) as Record<AuthorsNames[Index], AuthorVocabArborescence>;
 
 type AuthorVocabArborescence = { alt: EmptyString; bio: EmptyString };
